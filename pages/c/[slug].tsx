@@ -29,7 +29,11 @@ export default function PostPage({ frontmatter, code }: Post) {
     <Box
       css={{
         position: 'relative',
-        p: '$4',
+        p: '$2',
+        maxWidth: '100%',
+        '@bp1': {
+          p: '$4',
+        },
       }}
     >
       <TitleAndMetaTags description={frontmatter.title} />
@@ -78,9 +82,14 @@ export default function PostPage({ frontmatter, code }: Post) {
           bc: '$white',
           color: '$black',
           p: '$2',
-          br: '$3',
           width: '100%',
           maxWidth: '800px',
+          borderWidth: '$1',
+          borderStyle: 'solid',
+          borderColor: '$black',
+          '@bp1': {
+            p: '$5',
+          },
         }}
       >
         <Component components={components as any} />

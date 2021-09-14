@@ -131,4 +131,4 @@ export const Box = styled('div', {
   },
 });
 
-export type BoxProps = ComponentPropsWithRef<typeof Box>;
+export type BoxProps = ComponentPropsWithRef<typeof Box> & { as?: any };

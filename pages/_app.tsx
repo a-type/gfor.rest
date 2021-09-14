@@ -52,6 +52,7 @@ function App({ Component, pageProps }) {
             flex: 1,
             display: 'flex',
             flexDirection: 'column',
+            maxWidth: '100%',
           }}
         >
           <Component {...pageProps} />

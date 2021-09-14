@@ -5,7 +5,10 @@ export const ButtonBase = styled('button', {
   $$bg: '$colors$white',
   $$fg: '$colors$black',
   $$bgHover: '$colors$gray',
+  $$fgHover: '$colors$black',
   $$focus: '$colors$black',
+  $$border: 'currentColor',
+  $$borderHover: 'currentColor',
 
   px: '$6',
   py: '$3',
@@ -23,22 +26,29 @@ export const ButtonBase = styled('button', {
   border: 'none',
   focusRing: 'none',
   cursor: 'pointer',
+  borderWidth: '$1',
+  borderStyle: 'solid',
+  borderColor: 'currentColor',
 
   transitionEase: 'background-color, color, box-shadow',
 
   '&:hover': {
     backgroundColor: '$$bgHover',
+    color: '$$fgHover',
+    borderColor: 'currentColor',
   },
 
   '&:focus': {
-    focusRing: '$$focus',
+    color: '$$focus',
     backgroundColor: '$$bgHover',
     outline: 'none',
+    borderColor: 'currentColor',
   },
 
   '&:active': {
-    focusRing: '$$focus',
+    color: '$$focus',
     outline: 'none',
+    borderColor: 'currentColor',
   },
 
   '&:disabled': {
@@ -49,8 +59,8 @@ export const ButtonBase = styled('button', {
   // loading styles are white with border, unless icon is present.
   '&[data-loading="true"]:not([data-icon="true"])': {
     backgroundColor: '$snow',
-    focusRing: '$slateBold',
-    color: '$slateInk',
+    borderColor: '$black',
+    color: '$black',
   },
 
   // remove some start padding to fit icon
@@ -63,18 +73,18 @@ export const ButtonBase = styled('button', {
       ghost: {
         $$bg: 'transparent',
         $$fg: 'inherit',
-        $$bgHover: '$colors$dimmer',
-        $$focus: '$colors$dim',
+        $$bgHover: '$colors$white',
+        $$focus: '$colors$black',
         '&:disabled': {
           backgroundColor: '$dim',
-          color: '$slateInk',
+          color: '$black',
         },
       },
       primary: {
-        $$bg: '$colors$cherryBold',
-        $$fg: '$colors$snow',
-        $$bgHover: '$colors$cherryLight',
-        $$focus: '$colors$cherryRegular',
+        $$bg: '$colors$white',
+        $$fg: '$colors$black',
+        $$bgHover: '$colors$lightGray',
+        $$focus: '$colors$black',
       },
     },
   },
@@ -84,4 +94,7 @@ export const ButtonBase = styled('button', {
   },
 });
 
-export type ButtonBaseProps = ComponentPropsWithRef<typeof ButtonBase>;
+export type ButtonBaseProps = ComponentPropsWithRef<typeof ButtonBase> & {
+  as?: any;
+  [key: string]: any;
+};
