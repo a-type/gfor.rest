@@ -1,7 +1,6 @@
 import { AdaptiveDpr, AdaptiveEvents, Preload, useDetectGPU } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import { DepthOfField, EffectComposer, Outline, SSAO } from '@react-three/postprocessing';
-import { BlendFunction } from 'postprocessing';
+import { DepthOfField, EffectComposer } from '@react-three/postprocessing';
 import { Suspense, useContext } from 'react';
 import { Color, PCFShadowMap, Vector3 } from 'three';
 
@@ -64,14 +63,14 @@ const InnerScene: React.FC<SceneProps> = ({ style }) => {
         <CloudMap velocity={windVelocity} />
         {gpu.tier >= 2 && (
           <EffectComposer autoClear={false}>
-            <SSAO />
-            <DepthOfField />
-            <Outline
+            {/* <SSAO /> */}
+            {/* <Outline
               selection={cloudRefs.refs}
               blendFunction={BlendFunction.ALPHA}
               visibleEdgeColor={0x000000}
-              edgeStrength={0.5}
-            />
+              edgeStrength={0.1}
+            /> */}
+            <DepthOfField blur={19} bokehScale={2} />
           </EffectComposer>
         )}
         <AdaptiveDpr />
