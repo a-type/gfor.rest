@@ -45,22 +45,22 @@ export default {
     varying vec3 vNormal;
 
     void main() {
-      float shadowPower = 0.5;
+      float shadowPower = 1.0;
       float t = 0.0;
 
       float directionalLightWeighting = max(dot(normalize(vNormal), uDirLightPos), 0.0);
       vec3 lightWeighting = uDirLightColor * directionalLightWeighting;
 
-      gl_FragColor = vec4( mix(uBaseColor, uLineColor1, (1.0) * shadowPower), 1.0);
-
-      if (length(lightWeighting) < 1.0) {
-        gl_FragColor = vec4( mix(uLineColor1, uLineColor1, (1.0) * shadowPower), 1.0);
+      if (directionalLightWeighting < 12.0) {
+        gl_FragColor = vec4(uLineColor1, 1.0);
+      } else {
+        gl_FragColor = vec4(uBaseColor, 1.0);
       }
 
-      if (length(lightWeighting) < 0.5) {
+      if (directionalLightWeighting < 0.001) {
         t = (mod(gl_FragCoord.x + gl_FragCoord.y, 4.0));
         if (t > 2.0 && t < 4.0) {
-          gl_FragColor = vec4( mix(uLineColor2, uLineColor1, (1.0) * shadowPower), 1.0);
+          gl_FragColor = vec4( mix(uLineColor2, uLineColor1, 0.5 * shadowPower), 1.0);
         }
       }
     }

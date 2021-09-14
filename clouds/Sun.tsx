@@ -3,13 +3,9 @@ import { Vector3 } from 'three';
 
 import LightContext from './LightContext';
 
-export type SunProps = {
-  visualPosition?: Vector3;
-};
+export type SunProps = {};
 
-export const Sun: React.FC<SunProps> = ({
-  visualPosition = new Vector3(-40, 45, -100),
-}) => {
+export const Sun: React.FC<SunProps> = ({}) => {
   const targetRef = React.useRef();
   const { pointLightPosition, pointLightColor } =
     React.useContext(LightContext);
@@ -35,10 +31,6 @@ export const Sun: React.FC<SunProps> = ({
         }}
       />
       <mesh position={new Vector3(0, 0, 0)} ref={targetRef} />
-      <mesh position={visualPosition}>
-        <sphereBufferGeometry attach="geometry" args={[15, 32, 32]} />
-        <meshBasicMaterial color="#fff" attach="material" />
-      </mesh>
     </>
   );
 };

@@ -1,11 +1,17 @@
 import { a, useSpring } from '@react-spring/three';
-import { useLoader } from '@react-three/fiber';
+import { ThreeEvent, useLoader } from '@react-three/fiber';
 import { RepeatWrapping, TextureLoader } from 'three';
 
 import { useColors } from './colors';
 import tex from './textures/ground_texture_4.jpg';
 
-export function Ground({ planeSize }: { planeSize: number }) {
+export function Ground({
+  planeSize,
+  onClick,
+}: {
+  planeSize: number;
+  onClick?: (event: ThreeEvent<MouseEvent>) => void;
+}) {
   const colors = useColors();
 
   const texture = useLoader(TextureLoader, tex.src);
@@ -17,7 +23,12 @@ export function Ground({ planeSize }: { planeSize: number }) {
   });
 
   return (
-    <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]} receiveShadow>
+    <mesh
+      rotation={[-Math.PI / 2, 0, 0]}
+      position={[0, 0, 0]}
+      receiveShadow
+      onClick={onClick}
+    >
       <planeGeometry
         args={[(planeSize * 16) / 9, planeSize, 16, 16]}
         attach="geometry"

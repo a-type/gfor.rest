@@ -9,7 +9,7 @@ type ColorTheme = {
 };
 
 export const day: ColorTheme = {
-  cloudWhite: '#ffffff',
+  cloudWhite: '#f0f0f8',
   cloudShadow1: '#d0deff',
   cloudShadow2: '#6457cb',
   ground: '#408eaf',
@@ -30,7 +30,7 @@ export const sunrise: ColorTheme = {
 };
 
 export const withLabs: ColorTheme = {
-  cloudWhite: '#fff8f0',
+  cloudWhite: '#f0ebe0',
   cloudShadow1: '#fd847e',
   cloudShadow2: '#dfddf9',
   ground: '#c7c3f4',

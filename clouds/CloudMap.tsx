@@ -1,3 +1,4 @@
+import { ThreeEvent } from '@react-three/fiber';
 import * as React from 'react';
 import { Vector3 } from 'three';
 
@@ -16,34 +17,36 @@ export type CloudFieldProps = Omit<
   'onExitBoundary' | 'id' | 'initialPosition' | 'boundarySize'
 > & {
   numClouds?: number;
+  maxClouds?: number;
 };
 
 export const CloudMap: React.FC<CloudFieldProps> = ({
   numClouds = 6,
+  maxClouds = 10,
   ...cloudProps
 }) => {
   const size = baseFieldSize;
 
-  const [clouds, setClouds] = React.useState<{ [id: string]: CloudData }>({});
+  const [clouds, setClouds] = React.useState<CloudData[]>([]);
 
   React.useEffect(() => {
-    const initClouds: { [id: string]: CloudData } = {};
+    const initClouds: Array<CloudData> = [];
 
     // one cloud always at 0
     const firstId = randomId();
-    initClouds[firstId] = {
+    initClouds.push({
       id: firstId,
       initialPosition: new Vector3(0, cloudHeight, 0),
       size: randomSize(),
-    };
+    });
 
     for (let i = 0; i < numClouds - 1; i++) {
       const id = randomId();
-      initClouds[id] = {
+      initClouds.push({
         id,
         initialPosition: randomPosition(size),
         size: randomSize(),
-      };
+      });
     }
     setClouds(initClouds);
   }, [size[0], size[1]]);
@@ -53,19 +56,39 @@ export const CloudMap: React.FC<CloudFieldProps> = ({
     [size[0], size[1]],
   );
 
+  const createCloud = (ev: ThreeEvent<MouseEvent>) => {
+    const id = randomId();
+    const size = randomSize();
+    const pos = ev.intersections[0].point;
+    // const pos = ev.unprojectedPoint;
+    setClouds((cur) => {
+      if (cur.length >= maxClouds) {
+        cur.shift();
+      }
+      return [
+        ...cur,
+        {
+          id,
+          initialPosition: new Vector3(pos.x, cloudHeight, pos.z),
+          size,
+        },
+      ];
+    });
+  };
+
   return (
     <>
-      {Object.keys(clouds).map((id) => (
+      {clouds.map((cloud) => (
         <Cloud
-          id={id}
-          key={id}
+          id={cloud.id}
+          key={cloud.id}
           boundarySize={boundarySize}
-          initialPosition={clouds[id].initialPosition}
-          size={clouds[id].size}
+          initialPosition={cloud.initialPosition}
+          size={cloud.size}
           {...cloudProps}
         />
       ))}
-      <Ground planeSize={planeSize} />
+      <Ground planeSize={planeSize} onClick={createCloud} />
     </>
   );
 };

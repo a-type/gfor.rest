@@ -21,6 +21,7 @@ export default function Home({ posts }: { posts: Frontmatter[] }) {
         padding: '$6',
         position: 'relative',
         width: '100%',
+        pointerEvents: 'none',
       }}
     >
       <Box css={{ maxWidth: 900 }}>
@@ -43,10 +44,12 @@ export default function Home({ posts }: { posts: Frontmatter[] }) {
           <Typography kind="h1" as="h1" css={{ mb: '-20px', mr: '$3' }}>
             Grant Forrest
           </Typography>
-          <TwitterButton />
-          <GithubButton />
+          <Box direction="row" css={{ pointerEvents: 'initial' }} gap="2">
+            <TwitterButton />
+            <GithubButton />
+          </Box>
         </Box>
-        <HoverBox css={{ mb: '$5' }}>
+        <HoverBox css={{ mb: '$5', pointerEvents: 'initial' }}>
           <Typography kind="p1" css={{ mb: '$2' }}>
             I'm constantly making things. I prefer to make pretty stuff you can
             click on. Sometimes I get in a mood and make invisible stuff that
@@ -74,6 +77,7 @@ export default function Home({ posts }: { posts: Frontmatter[] }) {
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
             gridGap: '$5',
+            pointerEvents: 'initial',
           }}
         >
           {posts.map((postData) => (
