@@ -18,7 +18,7 @@ export default function Home({ posts }: { posts: Frontmatter[] }) {
   return (
     <Box
       css={{
-        padding: '$4',
+        padding: '$6',
         position: 'relative',
         width: '100%',
       }}
