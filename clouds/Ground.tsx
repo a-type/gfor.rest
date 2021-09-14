@@ -3,7 +3,7 @@ import { useLoader } from '@react-three/fiber';
 import { RepeatWrapping, TextureLoader } from 'three';
 
 import { useColors } from './colors';
-import tex from './textures/ground_texture_2.jpg';
+import tex from './textures/ground_texture_4.jpg';
 
 export function Ground({ planeSize }: { planeSize: number }) {
   const colors = useColors();

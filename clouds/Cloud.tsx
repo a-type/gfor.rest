@@ -70,9 +70,8 @@ export const Cloud: React.FC<CloudProps> = ({
       //generateLod().then(() => {
       isExiting.current = false;
       if (!ref.current) return;
-      ref.current.position.x = -(boundarySize[0] / 2);
-      ref.current.position.z =
-        Math.random() * boundarySize[1] - boundarySize[1] / 2;
+      ref.current.position.x = -boundarySize[0] * 0.75;
+      ref.current.position.z = -Math.random() * 0.75 * boundarySize[1];
       //});
     }
   });

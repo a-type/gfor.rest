@@ -48,13 +48,18 @@ export const CloudMap: React.FC<CloudFieldProps> = ({
     setClouds(initClouds);
   }, [size[0], size[1]]);
 
+  const boundarySize = React.useMemo(
+    () => [size[0] * 1.5, size[1] * 1.5] as [number, number],
+    [size[0], size[1]],
+  );
+
   return (
     <>
       {Object.keys(clouds).map((id) => (
         <Cloud
           id={id}
           key={id}
-          boundarySize={size}
+          boundarySize={boundarySize}
           initialPosition={clouds[id].initialPosition}
           size={clouds[id].size}
           {...cloudProps}
