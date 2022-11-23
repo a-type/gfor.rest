@@ -4,6 +4,7 @@ import { Box } from '@components/Box';
 import { GithubButton } from '@components/GithubButton';
 import { HoverBox } from '@components/HoverBox';
 import { Link } from '@components/Link';
+import { MastodonButton } from '@components/MastodonButton';
 import { TwitterButton } from '@components/TwitterButton';
 import { Typography } from '@components/Typography';
 import { getAllFrontmatter } from '@lib/mdx';
@@ -47,6 +48,7 @@ export default function Home({ posts }: { posts: Frontmatter[] }) {
           <Box direction="row" css={{ pointerEvents: 'initial' }} gap="2">
             <TwitterButton />
             <GithubButton />
+            <MastodonButton />
           </Box>
         </Box>
         <HoverBox css={{ mb: '$5', pointerEvents: 'initial' }}>
