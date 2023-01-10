@@ -59,18 +59,15 @@ export default function Home({ posts }: { posts: Frontmatter[] }) {
             it's never been done before.
           </Typography>
           <Typography kind="p1" css={{ mb: '$2' }}>
-            Today I work at{' '}
-            <Link href="https://twitter.com/withhq">With Labs</Link> as a senior
-            full-stack developer. You can find the whole story{' '}
+            I'm a founding engineer{' '}
+            <Link href="https://twitter.com/withhq">With Labs</Link>. You can
+            find the whole story{' '}
             <Link href="https://timeline.gfor.rest">here</Link>.
           </Typography>
-          <Typography kind="p1" css={{ mb: '$0' }}>
-            In my personal life, I write down my thoughts about life, faith, and
-            ideals. If you're interested in that, I publish{' '}
-            <Link href="https://temporarymountains.substack.com/publish?utm_source=menu">
-              here
-            </Link>
-            .
+          <Typography kind="p1" css={{ mb: '$2' }}>
+            I've also started a <Link href="https://blog.gfor.rest">blog</Link>{' '}
+            which is mostly about my thoughts on software philosophy, but
+            expands to more general systems like society and theology as well.
           </Typography>
         </HoverBox>
         <Box
